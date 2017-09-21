@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON</title>
+	<script>
+		var alumno ={
+			"Nombre": "Juan",
+			"edad" : 17,
+			"cursos": [
+				{
+					"codigo":"A34",
+					"Nombre":"Algoritmos"
+				},
+				{
+					"codigo":"B56",
+					"Nombre":"Base de Datos"
+				},
+				{
+					"codigo":"B57",
+					"Nombre":"Desarrollo Basado en plataformas"
+				},
+			],
+			"direccion": 
+				{
+					"tipo":"calle"
+
+				}
+
+		};
+
+		function verResultado(){
+			var out =document.getElementById("output");
+			var table =document.createElement("TABLE");
+			var trNombre = document.createElement("TR");
+			var trEdad = document.createElement("TR");
+			var trCursos = document.createElement("TR");
+
+			table.border = "1";
+
+			var td1 = document.createElement("TD");
+			var td2 = document.createElement("TD");
+			td1.innerText = "Nombre",
+			td2.innerText = alumno.Nombre;
+			trNombre.appendChild(td1);
+			trNombre.appendChild(td2);
+
+			//////////////////
+
+			td1 = document.createElement("TD");
+			td2 = document.createElement("TD");
+			td1.innerText = "Edad";
+			td2.innerText = alumno.edad;
+			trEdad.appendChild(td1);
+			trEdad.appendChild(td2);
+
+			/////////////////
+
+			td1 = document.createElement("TD");
+			td2 = document.createElement("TD");
+			td1.innerText = "cursos";
+			var ulCursos = document.createElement("UL");
+
+			for(var i=0;i<alumno.cursos.length;i++){
+				var liCurso = document.createElement("LI");
+				liCurso.innerHTML = alumno.cursos[i].Nombre;
+				ulCursos.appendChild(liCurso);
+				liCurso.id = "curso" + i;
+				liCurso.onclick=function(){
+					//this.style.color="blue";
+					var modificatoria = document.getElementById("modificar");
+					var tabla = document.createElement("TABLE");  //tabla para la modificacion 
+					var tablaTr1 = document.createElement("TR");
+					var tablaTr2 = document.createElement("TR");
+					var tablaTr2 = document.createElement("TR");
+					var tablaTr3 = document.createElement("TR");
+
+					var tr1Input = document.createElement("INPUT");
+					var tr2Input = document.createElement("INPUT");
+
+					var tablaTd1 = document.createElement("TD");
+					var tablaTd2 = document.createElement("TD");
+					var tablaTd3 = document.createElement("TD");
+					var tablaTd4 = document.createElement("TD");
+					//var tablaTd5 = document.createElement("TD");
+					//var tablaTd6 = document.createElement("TD");
+					
+					var tablaButton1 = document.createElement("BUTTON");
+					var tablaButton2 = document.createElement("BUTTON");
+					tablaButton1.innerText="cambiar";
+					tablaButton2.innerText="cancelar";
+
+
+
+
+
+					tabla.border = "1";
+
+					//tr1Input = JSON
+
+					tr1Input.value=liCurso;
+
+
+
+
+					tablaTd1.innerText = "Nombre curso";
+					tablaTd2.appendChild(tr1Input);
+					tablaTr1.appendChild(tablaTd1);
+					tablaTr1.appendChild(tablaTd2);
+
+					tablaTd3.innerText = "Id curso";
+					tablaTd4.appendChild(tr2Input);
+					tablaTr2.appendChild(tablaTd3);
+					tablaTr2.appendChild(tablaTd4);
+
+					
+					tablaTr3.appendChild(tablaButton1);
+					tablaTr3.appendChild(tablaButton2);
+
+
+					
+
+					tabla.appendChild(tablaTr1);
+					tabla.appendChild(tablaTr2);
+					tabla.appendChild(tablaTr3);
+					modificatoria.innerHTML="";
+					modificatoria.appendChild(tabla);
+
+
+
+
+
+					
+					
+				}
+
+			}
+
+
+
+				// el innerHTML sirve para obtener el valor html de algo y el innerText da valores en los html
+
+			td2.appendChild(ulCursos);
+			trCursos.appendChild(td1);
+			trCursos.appendChild(td2);
+
+			table.appendChild(trNombre);
+			table.appendChild(trEdad);
+			table.appendChild(trCursos);
+			out.innerHTML = "";
+			out.appendChild(table);
+
+
+
+
+		}
+
+
+
+
+	</script>
+</head>
+<body>
+	<button onclick="verResultado()">Ver Resultado</button>
+	<div id="output" style="margin: 10px; padding: 5px;"></div>
+	<div id="modificar" style="margin: 10px; padding:10px;">
+
+	</div>
+
+
+		
+
+</body>
+</html>
