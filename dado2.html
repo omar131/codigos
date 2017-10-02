@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Dados</title>
+  <style>
+  #resultado{
+    float: left;
+    background-color: yellow;
+  }
+  #dado1{
+    background-size: 100px;
+    border-color: blue;
+    background-color: gray;
+  }
+  #dado2{
+    background-size: 100px;
+    border-color: blue;
+    background-color: gray;
+    size: 50px;
+  }
+td {
+  width: 30px;
+  height: 30px;
+}
+
+button {
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+  </style>
+  <script>
+
+
+
+var temp=0;
+var primervalor;
+var segundovalor;
+
+
+
+function lanzar() {
+  
+  var valor = Math.floor(Math.random()*6+1);
+  var items = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  calcular(items, valor);
+  if(temp==0){ 
+  pintar(items);
+  primervalor=valor;
+  }
+  if (temp==1){
+    pintardado2(items);
+    segundovalor=valor;
+  }
+
+  
+
+}
+
+
+function calcular(items, valor) {
+  switch(valor) {
+    case 5:
+      items[2] = 1;
+      items[6] = 1;
+    case 3:
+      items[0] = 1;
+      items[8] = 1;
+    case 1:
+      items[4] = 1;
+      break;
+    case 6:
+      items[3] = 1;
+      items[5] = 1;
+    case 4:
+      items[2] = 1;
+      items[6] = 1;
+    case 2:
+      items[0] = 1;
+      items[8] = 1;
+      break;
+  }
+}
+
+function pintar(items) {
+  for ( var i=0; i<9; i++) {
+    var celda = document.getElementById(i + "");
+    celda.innerHTML = items[i] ? "*" : "";
+  }
+}
+
+function pintardado2(items){
+  for( var i=20;i<29;i++){
+    var celda = document.getElementById(i + "");
+    i=i-20;
+    celda.innerHTML = items[i] ? "*" : "";
+    i=i+20;
+  }
+}
+
+
+function turno2(){
+  temp=1;
+  lanzar();
+  var objeto = document.getElementById("resultado");
+  if(primervalor>segundovalor){
+    objeto.innerText="dado 1 ganador";
+  }
+  else if(primervalor<segundovalor){
+    objeto.innerText = "dado 2 ganador";
+  }
+  else{
+    objeto.innerText = "empate ";
+  }
+
+
+temp=0;
+
+
+
+}
+
+
+
+
+  </script>
+</head>
+<body>
+  <button onclick="lanzar();"  >jugador1</button>
+  <button onclick="turno2();" align="center">jugador2</button>
+  <br>
+  <table border="1px" id="dado2" >
+    <tr>
+      <td id="0"></td>
+      <td id="1"></td>
+      <td id="2"></td>
+    </tr>
+    <tr>
+      <td id="3"></td>
+      <td id="4"></td>
+      <td id="5"></td>
+    </tr>
+    <tr>
+      <td id="6"></td>
+      <td id="7"></td>
+      <td id="8"></td>
+    </tr>
+  </table>
+
+  
+
+  <table border="1px" id="dado2">
+    <tr>
+      <td id="20"></td>
+      <td id="21"></td>
+      <td id="22"></td>
+    </tr>
+    <tr>
+      <td id="23"></td>
+      <td id="24"></td>
+      <td id="25"></td>
+    </tr>
+    <tr>
+      <td id="26"></td>
+      <td id="27"></td>
+      <td id="28"></td>
+    </tr>
+  </table>
+
+  <div id="resultado" value=""> </div>
+
+
+
+
+
+</body>
+</html> 
